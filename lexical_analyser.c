@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<ctype.h>
+#include<stdlib.h>
 #include<string.h>
 void keyw(char *p);
 int i=0,id=0,kw=0,num=0,op=0;
@@ -8,16 +9,47 @@ char keys[32][10]={"auto","break","case","char","const","continue","default",
 "if","int","long","printf","return","short","signed",
 "sizeof","static","main","switch","typedef","union",
 "unsigned","void","scanf","while"};
+void keyw(char *p)
+	    {
+	    int k,flag=0;
+	    for(k=0;k<=31;k++)
+		{
+		if(strcmp(keys[k],p)==0)
+		    {
+		    printf("%s is a keyword\n",p);
+		    kw++;
+		    flag=1;
+		    break;
+		}
+	    }
+	    if(flag==0)
+		{
+		if(isdigit(p[0]))
+		    {
+		    printf("%s is a number\n",p);
+		    num++;
+		}
+		else
+		    {
+		    if(p[0]!='\0')
+
+			{
+			printf("%s is an identifier\n",p);
+			id++;
+		    }
+		}
+	    }
+	    i=-1;
+	}
 int main()
     {
      char ch,str[25],seps[15]=" \t\n,;(){}[]#\"<>",oper[]="!%^&*-+=~|.<>/?";
      int j;
      char fname[50];
      FILE *f1;
-     clrscr();
     printf("enter file path (drive:\\fold\\filename)\n");
     scanf("%s",fname);
-    f1 = fopen(fname,"r");
+    f1 = fopen("2input.txt","r");
      if(f1==NULL)
 	 {
 	  printf("file not found");
@@ -74,8 +106,6 @@ int main()
 		}
 	    }
 	    if(i!=-1)
-
-
 		{
 		str[i]=ch;
 		i++;
@@ -83,53 +113,7 @@ int main()
 	    else
 	    i=0;
 	     }
-	    printf("Keywords: %d\nIdentifiers: %d\nOperators: %d\nNumbers: %d\n",kw,id,op,num);
-	    getch();
+	    printf("Keywords: %d\nIdentifiers: %d\nOperators: %d\nNumbers:%d\n",kw,id,op,num);
 	    return 0;
 	}
-	void keyw(char *p)
-
-
-	    {
-	    int k,flag=0;
-	    for(k=0;k<=31;k++)
-
-
-		{
-		if(strcmp(keys[k],p)==0)
-
-
-		    {
-		    printf("%s is a keyword\n",p);
-		    kw++;
-		    flag=1;
-		    break;
-		}
-	    }
-	    if(flag==0)
-
-
-		{
-		if(isdigit(p[0]))
-
-
-		    {
-		    printf("%s is a number\n",p);
-		    num++;
-		}
-		else
-
-
-		    {
-		    //if(p[0]!=13&&p[0]!=10)
-		    if(p[0]!='\0')
-
-
-			{
-			printf("%s is an identifier\n",p);
-			id++;
-		    }
-		}
-	    }
-	    i=-1;
-	}
+	
