@@ -1,7 +1,7 @@
 # Language_Lab
 
 
-[1] Lexical Analyser
+[1] Lexical Analyser<br>
 To run this program in Ubantu
 -> At the Code File directory.
    - Add create a code file.txt (C code txt)
